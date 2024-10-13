@@ -1,43 +1,108 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Página de Login</title>
     <link rel="stylesheet" href="/css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        .error-message {
+            color: red; 
+            margin-bottom: 16px;
+            display: none; 
+        }
+        .input-options {
+            margin-top: 16px; 
+        }
+        .forgot-password {
+            margin-left: 16px; 
+            text-decoration: none; 
+        }
+    </style>
 </head>
 <body>
     <div class="flex-container">
-
         <section class="flex-item-left">
-        <img src="/src/assets/img/svg.png" alt="">
+            <img src="/src/assets/img/svg.png" alt="Imagem de Fundo">
         </section>
-        <section class="flex-item-right ">
+        
+        <section class="flex-item-right">
+            <div class="login-container">
+                <div id="title">
+                    <h1>Bem-vindo de volta</h1>
+                    <h2>Faça login na sua conta</h2>
+                </div>
 
+                <div id="error-message" class="error-message"></div>
+
+                <div class="form-container">
+                    <div class="input-group">
+                        <label for="email">E-mail</label>
+                        <input type="email" id="email" placeholder="exemplo@gmail.com">
+                    </div>
+                    <div class="input-group">
+                        <label for="senha">Senha</label>
+                        <input type="password" id="senha" placeholder="0123456789">
+                    </div>
+                    
+                    <div class="input-options">
+                        <label>
+                            <input type="checkbox" id="lembrar" name="lembrar"> Lembre-se de mim
+                        </label>
+                        <a href="#" class="forgot-password" style="color: #1E9E6A;">Esqueceu sua senha?</a>
+                    </div>
+                </div>
+
+                <div class="button-group">
+                    <button class="btn-enter">Entrar na conta</button>
+                    <button class="btn-google">
+                        <img src="https://s3-alpha-sig.figma.com/img/197a/7e4d/9af128e66ac7d6d0e573cad6385214d3?Expires=1729468800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=EEaq66~lbWwpc5lfRTIIqxAnit2nmtBljJBluNW4zntgBvC0w4qNZOUtBThdzMLyKXXuPXpE8gOHhJZFQALAObpQesTH9sLiumeelWlWxSCb5IYfn9R-CEgpmS-ubcg20wC1Oh~tH0WtNgAFH~caqDRsINe4aai-WEEBeO6akapzwhYEYW7PnFSJq0DHBDLib8JOhxn4labw-ApZVeoMgtyfObt-xW3L9KliinRf5FHOQHDvw84pGadrbFn42vHvfdRkolmrm-JOuMM9LepqS7cxpfJdFg6WosMbxx~Os~gMfNzjvGFyVuV--1rXgoJUISeeWobVIWYQAieIeR8v1Q__" alt="Google" class="google-icon">
+                        Ou faça login com o Google
+                    </button>
+                    
+                </div>
+                
+                <div class="register-prompt">
+                    <p>Não tem uma conta? <a href="#">Cadastre-se</a></p>
+                </div>
+                
+            </div>
         </section>
-        <div id="title">
-            <h1>Bem-vindo de volta</h1>
-            <h1>Email</h1>
-            <h1>Senha</h1>
-            <h1>Não tem uma conta?</h1>
-            <h1>Lembre de mim</h1>
-        </div>    
-        <ul>
-            <a href="#"><li>Esqueceu sua senha?</li></a>
-            <a href="#"><li>Entrar na conta</li></a>
-            <a href="#"><li>Ou faça login com o Google</li></a>
-        </ul>
-        <main>
-            <form>
-                <input type="email" placeholder="email">
-                <input type="number" placeholder="number">
-            </form>
-        </main>
     </div>
-    <script src="./js/script.js"></script>
 
+    <script>
+        document.querySelector('.btn-enter').addEventListener('click', function(event) {
+            event.preventDefault(); 
+
+            
+            const email = document.getElementById('email').value.trim();
+            const senha = document.getElementById('senha').value.trim();
+            const errorMessage = document.getElementById('error-message');
+
+          
+            errorMessage.style.display = 'none';
+            errorMessage.textContent = '';
+
+            
+            if (!email && !senha) {
+                errorMessage.textContent = 'Por favor, adicione e-mail e senha.';
+                errorMessage.style.display = 'block';
+            } else if (!email) {
+                errorMessage.textContent = 'E-mail não inserido.';
+                errorMessage.style.display = 'block';
+            } else if (!senha) {
+                errorMessage.textContent = 'Senha não inserida.';
+                errorMessage.style.display = 'block';
+            } else {
+                
+                window.location.href = 'obrigado.html';
+            }
+        });
+    </script>
+
+    <script src="./js/script.js"></script>
 </body>
 </html>
